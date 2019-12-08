@@ -15,6 +15,9 @@
                     @endif
 
                     You are logged in as a patient!
+
+                    Hi {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}
+
                 </div>
             </div>
         </div>

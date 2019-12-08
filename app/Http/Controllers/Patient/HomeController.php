@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -15,6 +16,8 @@ class HomeController extends Controller
   }
 
   public function index(){
+
+    $user = Auth::user();     //retrieves currently authenticated user
     return view('patient.home');
   }
 }
