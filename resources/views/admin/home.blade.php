@@ -14,7 +14,13 @@
                         </div>
                     @endif
 
-                    You are logged in as an administrtor!
+                    You are logged in as an administrator!
+
+                    </br>
+                    <a href="{{ route('admin.doctors.index') }}">View Doctors</a>
+                    </br>
+                    <a href="{{ route('admin.patients.index') }}">View Patients</a>
+
                 </div>
             </div>
         </div>

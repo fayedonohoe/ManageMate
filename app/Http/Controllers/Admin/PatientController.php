@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Doctor; //may just be use Doctor
+use App\Patient;
 use App\User;
 use App\Role;
+use App\Insurer;
 
-class DoctorController extends Controller
+class PatientController extends Controller
 {
   public function __construct()
   {
@@ -22,10 +23,10 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::all()->paginate(10);
+        $patients = Patient::all();
 
-        return view('admin.doctors.index')->with([
-          'doctors' => $doctors
+        return view('admin.patients.index')->with([
+          'patients' => $patients
         ]);
     }
 
@@ -36,8 +37,11 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        // vid 2, 23:35
-        return view('admin.doctors.create');
+        $insurers = Insurer::all();
+
+        return view('admin.patients.create')->with([
+          'insurers' => $insurers
+        ]);
     }
 
     /**
@@ -55,6 +59,7 @@ class DoctorController extends Controller
           'num' => 'required|size:10',
           'email' => 'required|max:191',
           'password' => 'required|max:191',
+          //'policyNum' => 'nullable|size:10',
         ]);
 
         $user = new User();
@@ -67,14 +72,13 @@ class DoctorController extends Controller
 
         $user->save();
 
-        $doctor = new Doctor();
-        $doctor->startofEmployment = $request->input('started');
-        $doctor->user_id = $user->id;
-        $doctor->save();
+        $patient = new Patient();
+        $patient->user_id = $user->id;
+        $patient->insurer_id = $request->input('insurer_id');
+        $patient->policyNum = $request->input('policyNum');
+        $patient->save();
 
-
-        // $newrole = User
-        return redirect()->route('admin.doctors.index');
+        return redirect()->route('admin.patients.index');
     }
 
     /**
@@ -85,10 +89,10 @@ class DoctorController extends Controller
      */
     public function show($id)
     {
-        $doctor = Doctor::findOrFail($id);
+        $patient = Patient::findOrFail($id);
 
-        return view('admin.doctors.show')->with([
-          'doctor' => $doctor
+        return view('admin.patients.show')->with([
+          'patient' => $patient
         ]);
     }
 
@@ -100,10 +104,12 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-      $doctor = Doctor::findOrFail($id);
+      $insurers = Insurer::all();
+      $patient = Patient::findOrFail($id);
 
-      return view('admin.doctors.edit')->with([
-        'doctor' => $doctor
+      return view('admin.patients.edit')->with([
+        'patient' => $patient,
+        'insurers' => $insurers,
       ]);
     }
 
@@ -116,28 +122,30 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $doctor = Doctor::findOrFail($id);
+      $patient = Patient::findOrFail($id);
 
       $request->validate([
         'fname' => 'required|max:191',
         'lname' => 'required|max:191',
         'eircode' => 'required|alpha_num|size:7',
         'num' => 'required|size:10',
-        'email' => 'required|max:191|unique:users,email,'.$doctor->id,
+        'email' => 'required|max:191|unique:users,email,'.$patient->id,
         'password' => 'required|max:191',
       ]);
 
-      $doctor = new User();
-      $doctor->firstName = $request->input('fname');
-      $doctor->lastName = $request->input('lname');
-      $doctor->eircode = $request->input('eircode');
-      $doctor->phoneNumber = $request->input('num');
-      $doctor->email = $request->input('email');
-      $doctor->password = $request->input('password');
+      $patient = new User();
+      $patient->firstName = $request->input('fname');
+      $patient->lastName = $request->input('lname');
+      $patient->eircode = $request->input('eircode');
+      $patient->phoneNumber = $request->input('num');
+      $patient->email = $request->input('email');
+      $patient->password = $request->input('password');
 
-      $doctor->update();
+      $patient->update();
 
-      return redirect()->route('admin.doctors.index');
+      // CHANGE THE ABOVE TO $USER AND BELOW THE UPDATE, UPDATE PATIENTS TABLE
+
+      return redirect()->route('admin.patients.index');
 
     }
 
@@ -149,10 +157,10 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-      $doctor = Doctor::findOrFail($id);
+      $patient = Patient::findOrFail($id);
 
-      $doctor->delete();
+      $patient->delete();
 
-      return redirect()->route('admin.doctors.index');
+      return redirect()->route('admin.patients.index');
     }
 }

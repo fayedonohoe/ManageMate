@@ -13,6 +13,8 @@
 
                   </br>
                   <a href="{{ route('about') }}">About MedCentral</a>
+                  </br>
+                  <a href="{{ route('home') }}">Home</a>
 
                 </div>
             </div>

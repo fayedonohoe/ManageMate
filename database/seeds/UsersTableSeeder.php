@@ -20,8 +20,8 @@ class UsersTableSeeder extends Seeder
       $admin = new User();
       $admin->firstName = 'Faye';
       $admin->lastName = 'Donohoe';
-      $admin->eircode = 'D16 R2F5';
-      $admin->phoneNumber = '0871318661';
+      $admin->eircode = 'D16R2F5';
+      $admin->phoneNumber = '08' . $this->random_str(8, '0123456789');
       $admin->email = 'admin@medcentral.ie';
       $admin->password = bcrypt('secret');
       $admin->save();
@@ -30,8 +30,8 @@ class UsersTableSeeder extends Seeder
       $doctor = new User();
       $doctor->firstName = 'John';
       $doctor->lastName = 'Smith';
-      $doctor->eircode = 'D16 R2F5';
-      $doctor->phoneNumber = '0871318661';
+      $doctor->eircode = 'D18K9L5';
+      $doctor->phoneNumber = '08' . $this->random_str(8, '0123456789');
       $doctor->email = 'johnsmith@medcentral.ie';
       $doctor->password = bcrypt('tardis');
       $doctor->save();
@@ -40,8 +40,8 @@ class UsersTableSeeder extends Seeder
       $patient = new User();
       $patient->firstName = 'Donna';
       $patient->lastName = 'Noble';
-      $patient->eircode = 'C90 K0JL';
-      $patient->phoneNumber = '0' . $this->random_str(2, '0123456789') . '-' . $this->random_str(7, '0123456789');
+      $patient->eircode = 'C90K0JL';
+      $patient->phoneNumber = '08' . $this->random_str(8, '0123456789');
       $patient->email = 'donnanoble@medcentral.ie';
       $patient->password = bcrypt('secret');
       $patient->save();
@@ -50,8 +50,8 @@ class UsersTableSeeder extends Seeder
       $patient = new User();
       $patient->firstName = 'Rose';
       $patient->lastName = 'Tyler';
-      $patient->eircode = 'D12 LK87';
-      $patient->phoneNumber = '0' . $this->random_str(2, '0123456789') . '-' . $this->random_str(7, '0123456789');
+      $patient->eircode = 'D12LK87';
+      $patient->phoneNumber = '08' . $this->random_str(8, '0123456789');
       $patient->email = 'rosetyler@medcentral.ie';
       $patient->password = bcrypt('secret');
       $patient->save();

@@ -32,3 +32,11 @@ Route::delete('/admin/doctors{id}', 'Admin\DoctorController@destroy')->name('adm
 
 // around 18mins on video - user viewing books
 //Route::get('/doctor/do')
+
+Route::get('/admin/patients', 'Admin\PatientController@index')->name('admin.patients.index');
+Route::get('/admin/patients/create', 'Admin\PatientController@create')->name('admin.patients.create');
+Route::get('/admin/patients/{id}', 'Admin\PatientController@show')->name('admin.patients.show');
+Route::post('/admin/patients/store', 'Admin\PatientController@store')->name('admin.patients.store');
+Route::get('/admin/patients{id}/edit', 'Admin\PatientController@edit')->name('admin.patients.edit');
+Route::put('/admin/patients{id}', 'Admin\PatientController@update')->name('admin.patients.update');
+Route::delete('/admin/patients{id}', 'Admin\PatientController@destroy')->name('admin.patients.destroy');
