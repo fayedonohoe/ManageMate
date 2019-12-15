@@ -30,9 +30,6 @@ Route::get('/admin/doctors{id}/edit', 'Admin\DoctorController@edit')->name('admi
 Route::put('/admin/doctors{id}', 'Admin\DoctorController@update')->name('admin.doctors.update');
 Route::delete('/admin/doctors{id}', 'Admin\DoctorController@destroy')->name('admin.doctors.destroy');
 
-// around 18mins on video - user viewing books
-//Route::get('/doctor/do')
-
 Route::get('/admin/patients', 'Admin\PatientController@index')->name('admin.patients.index');
 Route::get('/admin/patients/create', 'Admin\PatientController@create')->name('admin.patients.create');
 Route::get('/admin/patients/{id}', 'Admin\PatientController@show')->name('admin.patients.show');
@@ -40,3 +37,11 @@ Route::post('/admin/patients/store', 'Admin\PatientController@store')->name('adm
 Route::get('/admin/patients{id}/edit', 'Admin\PatientController@edit')->name('admin.patients.edit');
 Route::put('/admin/patients{id}', 'Admin\PatientController@update')->name('admin.patients.update');
 Route::delete('/admin/patients{id}', 'Admin\PatientController@destroy')->name('admin.patients.destroy');
+
+Route::get('/admin/visits', 'Admin\VisitController@index')->name('admin.visits.index');
+Route::get('/admin/visits/create', 'Admin\VisitController@create')->name('admin.visits.create');
+Route::get('/admin/visits/{id}', 'Admin\VisitController@show')->name('admin.visits.show');
+Route::post('/admin/visits/store', 'Admin\VisitController@store')->name('admin.visits.store');
+Route::get('/admin/visits{id}/edit', 'Admin\VisitController@edit')->name('admin.visits.edit');
+Route::put('/admin/visits{id}', 'Admin\VisitController@update')->name('admin.visits.update');
+Route::delete('/admin/visits{id}', 'Admin\VisitController@destroy')->name('admin.visits.destroy');
