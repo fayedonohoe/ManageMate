@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Admin Dashboard</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,12 +14,16 @@
                         </div>
                     @endif
 
-                    You are logged in as an administrator!
-
                     </br>
                     <a href="{{ route('admin.doctors.index') }}">View Doctors</a>
                     </br>
                     <a href="{{ route('admin.patients.index') }}">View Patients</a>
+                    </br>
+                    <a href="{{ route('admin.visits.index') }}">View Visits (Index currently not functioning)</a>
+                    </br>
+                    <a href="{{ route('admin.visits.create') }}">Record a Visit</a>
+                    </br>
+                    Example Visit Functioning: http://127.0.0.1:8000/admin/visits/1
 
                 </div>
             </div>

@@ -26,6 +26,7 @@
                 <tbody>
                   @foreach ($visits as $visit)
                     <tr data-id="{{ $visit->id }}">
+                      <!-- THE ABOVE LINE IS BREAKING THE INDEX AND I CANT FIGURE OUT WHY, SAME IN  -->
                       <td>{{ $visit->patient->user->firstName }} {{ $visit->patient->user->lastName }}</td>
                       <td>{{ $visit->doctor->user->firstName }} {{ $visit->->doctor->user->lastName }}</td>
                       <td>{{ $visit->date }}</td>

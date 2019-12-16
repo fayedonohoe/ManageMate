@@ -102,7 +102,15 @@ class VisitController extends Controller
      */
     public function edit($id)
     {
+        // $doctors = Doctor::all();
+        // $patients = Patient::all();
+        // $visit = Visit::findOrFail($id);
         //
+        // return view('admin.visits.edit')->with([
+        //   'visit' => $visit,
+        //   'doctors' => $doctors,
+        //   'patients' => $patients,
+        // ]);
     }
 
     /**
@@ -114,7 +122,17 @@ class VisitController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $visit = Visit::findOrFail($id);
         //
+        // $visit = new Visit();
+        // $visit->date = $request->input('date');
+        // $visit->time = $request->input('time');
+        // $visit->duration = $request->input('duration');
+        // $visit->cost = $request->input('cost');
+        // $visit->patient_id = $request->input('patient_id');
+        // $visit->doctor_id = $request->input('doctor_id');
+        //
+        // $visit->update();
     }
 
     /**
