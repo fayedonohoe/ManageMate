@@ -6,7 +6,7 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="card">
           <div class="card-header">
-            Visit: Patient {{ $visit->patient->user->firstName }} {{ $visit->patient->user->lastName }} with Doctor {{ $visit->doctor->user->firstName }} {{ $visit->doctor->user->lastName }}
+            Visit: Patient {{ $visit->employee->user->firstName }} {{ $visit->employee->user->lastName }} with Manager {{ $visit->manager->user->firstName }} {{ $visit->manager->user->lastName }}
 
           </div>
           <div class="card-body">

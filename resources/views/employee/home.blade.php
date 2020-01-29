@@ -1,8 +1,8 @@
-@extends('layouts.mmapp')
+@extends('layouts.app')
 
 @section('content')
-<div class="">
-    <div class="col justify-content-center">
+<div class="container">
+    <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged in as a employee!
+
+                    Hi {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}
+
                 </div>
             </div>
         </div>

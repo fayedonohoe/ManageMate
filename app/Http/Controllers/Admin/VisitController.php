@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Patient;
+use App\Employee;
 use App\Doctor;
 use App\User;
 use App\Visit;
@@ -38,11 +38,11 @@ class VisitController extends Controller
      */
     public function create()
     {
-      $patients = Patient::all();
+      $employees = Employee::all();
       $doctors = Doctor::all();
 
       return view('admin.visits.create')->with([
-        'patients' => $patients,
+        'employees' => $employees,
         'doctors' => $doctors
       ]);
     }
@@ -55,7 +55,7 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-      //date, time, duration, cost, patient, doctor
+      //date, time, duration, cost, employee, doctor
         // $request->validate([
         //   'fname' => 'required|max:191',
         //   'lname' => 'required|max:191',
@@ -71,7 +71,7 @@ class VisitController extends Controller
         $visit->time = $request->input('time');
         $visit->duration = $request->input('duration');
         $visit->cost = $request->input('cost');
-        $visit->patient_id = $request->input('patient_id');
+        $visit->employee_id = $request->input('employee_id');
         $visit->doctor_id = $request->input('doctor_id');
 
         $visit->save();
@@ -103,13 +103,13 @@ class VisitController extends Controller
     public function edit($id)
     {
         // $doctors = Doctor::all();
-        // $patients = Patient::all();
+        // $employees = Patient::all();
         // $visit = Visit::findOrFail($id);
         //
         // return view('admin.visits.edit')->with([
         //   'visit' => $visit,
         //   'doctors' => $doctors,
-        //   'patients' => $patients,
+        //   'employees' => $employees,
         // ]);
     }
 
@@ -129,7 +129,7 @@ class VisitController extends Controller
         // $visit->time = $request->input('time');
         // $visit->duration = $request->input('duration');
         // $visit->cost = $request->input('cost');
-        // $visit->patient_id = $request->input('patient_id');
+        // $visit->employee_id = $request->input('employee_id');
         // $visit->doctor_id = $request->input('doctor_id');
         //
         // $visit->update();

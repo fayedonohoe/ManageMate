@@ -19,12 +19,12 @@ class CreateVisitsTable extends Migration
             $table->string('time'); //0000 hrs
             $table->integer('duration'); //in minutes
             $table->float('cost');
-            $table->bigInteger('patient_id')->unsigned();
-            $table->bigInteger('doctor_id')->unsigned();
+            $table->bigInteger('employee_id')->unsigned();
+            $table->bigInteger('manager_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('patient_id')->references('id')->on('patients');
-            $table->foreign('doctor_id')->references('id')->on('doctors');
+            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('manager_id')->references('id')->on('managers');
 
         });
     }

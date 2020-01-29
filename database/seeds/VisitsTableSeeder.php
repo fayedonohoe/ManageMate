@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Patient;
+use App\Employee;
 use App\Role;
 use App\User;
 use App\Visit;
@@ -20,8 +20,8 @@ class VisitsTableSeeder extends Seeder
         $visit->time = '0815';
         $visit->duration = '20';
         $visit->cost = '60';
-        $visit->patient_id = 1;
-        $visit->doctor_id =1;
+        $visit->employee_id = 1;
+        $visit->manager_id =1;
         $visit->save();
 
       }

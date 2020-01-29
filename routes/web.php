@@ -13,35 +13,47 @@
 
 Route::get('/', 'PageController@welcome')->name('welcome');
 Route::get('/about', 'PageController@about')->name('about');
+Route::get('/roster', 'PageController@roster')->name('roster');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home');
-Route::get('/doctor/home', 'Doctor\HomeController@index')->name('doctor.home');
-Route::get('/patient/home', 'Patient\HomeController@index')->name('patient.home');
+Route::get('/manager/home', 'Manager\HomeController@index')->name('manager.home');
+Route::get('/employee/home', 'Employee\HomeController@index')->name('employee.home');
 
-Route::get('/admin/doctors', 'Admin\DoctorController@index')->name('admin.doctors.index');
-Route::get('/admin/doctors/create', 'Admin\DoctorController@create')->name('admin.doctors.create');
-Route::get('/admin/doctors/{id}', 'Admin\DoctorController@show')->name('admin.doctors.show');
-Route::post('/admin/doctors/store', 'Admin\DoctorController@store')->name('admin.doctors.store');
-Route::get('/admin/doctors{id}/edit', 'Admin\DoctorController@edit')->name('admin.doctors.edit');
-Route::put('/admin/doctors{id}', 'Admin\DoctorController@update')->name('admin.doctors.update');
-Route::delete('/admin/doctors{id}', 'Admin\DoctorController@destroy')->name('admin.doctors.destroy');
+Route::get('/admin/managers', 'Admin\ManagerController@index')->name('admin.managers.index');
+Route::get('/admin/managers/create', 'Admin\ManagerController@create')->name('admin.managers.create');
+Route::get('/admin/managers/{id}', 'Admin\ManagerController@show')->name('admin.managers.show');
+Route::post('/admin/managers/store', 'Admin\ManagerController@store')->name('admin.managers.store');
+Route::get('/admin/managers{id}/edit', 'Admin\ManagerController@edit')->name('admin.managers.edit');
+Route::put('/admin/managers{id}', 'Admin\ManagerController@update')->name('admin.managers.update');
+Route::delete('/admin/managers{id}', 'Admin\ManagerController@destroy')->name('admin.managers.destroy');
 
-Route::get('/admin/patients', 'Admin\PatientController@index')->name('admin.patients.index');
-Route::get('/admin/patients/create', 'Admin\PatientController@create')->name('admin.patients.create');
-Route::get('/admin/patients/{id}', 'Admin\PatientController@show')->name('admin.patients.show');
-Route::post('/admin/patients/store', 'Admin\PatientController@store')->name('admin.patients.store');
-Route::get('/admin/patients{id}/edit', 'Admin\PatientController@edit')->name('admin.patients.edit');
-Route::put('/admin/patients{id}', 'Admin\PatientController@update')->name('admin.patients.update');
-Route::delete('/admin/patients{id}', 'Admin\PatientController@destroy')->name('admin.patients.destroy');
+Route::get('/admin/employees', 'Admin\EmployeeController@index')->name('admin.employees.index');
+Route::get('/admin/employees/create', 'Admin\EmployeeController@create')->name('admin.employees.create');
+Route::get('/admin/employees/{id}', 'Admin\EmployeeController@show')->name('admin.employees.show');
+Route::post('/admin/employees/store', 'Admin\EmployeeController@store')->name('admin.employees.store');
+Route::get('/admin/employees{id}/edit', 'Admin\EmployeeController@edit')->name('admin.employees.edit');
+Route::put('/admin/employees{id}', 'Admin\EmployeeController@update')->name('admin.employees.update');
+Route::delete('/admin/employees{id}', 'Admin\EmployeeController@destroy')->name('admin.employees.destroy');
 
-Route::get('/admin/visits', 'Admin\VisitController@index')->name('admin.visits.index');
-Route::get('/admin/visits/create', 'Admin\VisitController@create')->name('admin.visits.create');
-Route::get('/admin/visits/{id}', 'Admin\VisitController@show')->name('admin.visits.show');
-Route::post('/admin/visits/store', 'Admin\VisitController@store')->name('admin.visits.store');
-Route::get('/admin/visits{id}/edit', 'Admin\VisitController@edit')->name('admin.visits.edit');
-Route::put('/admin/visits{id}', 'Admin\VisitController@update')->name('admin.visits.update');
-Route::delete('/admin/visits{id}', 'Admin\VisitController@destroy')->name('admin.visits.destroy');
+Route::get('/manager/employees', 'Manager\EmployeeController@index')->name('manager.employees.index');
+Route::get('/manager/employees/create', 'Manager\EmployeeController@create')->name('manager.employees.create');
+Route::get('/manager/employees/{id}', 'Manager\EmployeeController@show')->name('manager.employees.show');
+Route::post('/manager/employees/store', 'Manager\EmployeeController@store')->name('manager.employees.store');
+Route::get('/manager/employees{id}/edit', 'Manager\EmployeeController@edit')->name('manager.employees.edit');
+Route::put('/manager/employees{id}', 'Manager\EmployeeController@update')->name('manager.employees.update');
+Route::delete('/manager/employees{id}', 'Manager\EmployeeController@destroy')->name('manager.employees.destroy');
+
+//Route::get('/manager/home', 'Manager\HomeController@index')->name('manager.home');
+Route::get('/manager/roster', 'manager\RosterController@index')->name('manager.roster');
+
+Route::get('/manager/shifts', 'manager\ShiftController@index')->name('manager.shifts.index');
+Route::get('/manager/shifts/create', 'manager\ShiftController@create')->name('manager.shifts.create');
+Route::get('/manager/shifts/{id}', 'manager\ShiftController@show')->name('manager.shifts.show');
+Route::post('/manager/shifts/store', 'manager\ShiftController@store')->name('manager.shifts.store');
+Route::get('/manager/shifts{id}/edit', 'manager\ShiftController@edit')->name('manager.shifts.edit');
+Route::put('/manager/shifts{id}', 'manager\ShiftController@update')->name('manager.shifts.update');
+Route::delete('/manager/shifts{id}', 'manager\ShiftController@destroy')->name('manager.shifts.destroy');

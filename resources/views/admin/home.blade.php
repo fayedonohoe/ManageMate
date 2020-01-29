@@ -15,15 +15,15 @@
                     @endif
 
                     </br>
-                    <a href="{{ route('admin.doctors.index') }}">View Doctors</a>
+                    <a href="{{ route('admin.managers.index') }}">View Managers</a>
                     </br>
-                    <a href="{{ route('admin.patients.index') }}">View Patients</a>
+                    <a href="{{ route('admin.employees.index') }}">View Employees</a>
                     </br>
-                    <a href="{{ route('admin.visits.index') }}">View Visits (Index currently not functioning)</a>
+                    <!-- <a href="{{ route('admin.visits.index') }}">View Visits (Index currently not functioning)</a>
                     </br>
                     <a href="{{ route('admin.visits.create') }}">Record a Visit</a>
                     </br>
-                    Example Visit Functioning: http://127.0.0.1:8000/admin/visits/1
+                    Example Visit Functioning: http://127.0.0.1:8000/admin/visits/1 -->
 
                 </div>
             </div>

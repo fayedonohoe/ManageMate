@@ -18,14 +18,14 @@ class RolesTableSeeder extends Seeder
       $role_admin->description = 'An adminastrative user, full access to system';
       $role_admin->save();
 
-      $role_doctor = new Role();
-      $role_doctor->name = 'doctor';
-      $role_doctor->description = 'A doctor on the Medical Centre staff';
-      $role_doctor->save();
+      $role_manager = new Role();
+      $role_manager->name = 'manager';
+      $role_manager->description = 'A manager with full authorisation';
+      $role_manager->save();
 
       $role_user = new Role();
-      $role_user->name = 'patient';
-      $role_user->description = 'A patient of the Medical Centre';
+      $role_user->name = 'employee';
+      $role_user->description = 'A employee of the company';
       $role_user->save();
 
   }

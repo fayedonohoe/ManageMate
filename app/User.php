@@ -38,10 +38,24 @@ class User extends Authenticatable
     ];
 
 
-    public function doctor(){
-      return $this->hasOne('App\Doctor');
+    public function manager(){
+      return $this->hasOne('App\Manager');
     }
 
+
+
+
+    public function shifts(){
+      return $this->belongsToMany('App\Shift', 'user_shift');
+    }
+
+    public function hasShift($shift){
+      return null !== $this->shifts()->where('name', $shift)->first();
+    }
+
+    public function hasAnyShift($shifts){
+      return null !== $this->shifts()->where('name', $shifts)->first();
+    }
 
 
     public function roles(){
@@ -56,7 +70,6 @@ class User extends Authenticatable
       return $this->hasRole($roles) || abort(401, 'This action is unauthorised');
     }
 
-
     public function hasRole($role){
       return null !== $this->roles()->where('name', $role)->first();
     }
@@ -65,10 +78,4 @@ class User extends Authenticatable
       return null !== $this->roles()->where('name', $roles)->first();
     }
 
-   //  if($user->authorizeRoles('admin', 'doctor', 'patient')){
-   //    //
-   //  }
-   //  else{
-   //    //
-   // }
 }

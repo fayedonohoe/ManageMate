@@ -1,22 +1,23 @@
-@extends('layouts.app')
+@extends('layouts.mmapp')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">About Med Central</div>
+                <div class="card-header">About ManageMate</div>
 
                 <div class="card-body">
 
-                  MedCentral was opened in 1990 as a GP practice on the site of the old Mercer’s Hospital.  We are committed in our efforts to provide healthcare for the sick and needy of Dublin, honouring the legacy of the founder.  Our premises have been recently renovated and the practice is the largest in Dublin city centre.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur lectus ut vulputate semper.
 
                 <br>
                 <br>
 
-                  MedCentral is a Primary Care Research Practice for the Irish College of General Practitioners and we participate in the training of student doctors and in the specialist training of future General Practitioners.
-                  We are active advocates for positive change in our health services
-                </div>
+                  Praesent vitae tortor urna. Curabitur non justo egestas elit suscipit laoreet non eget ex. Lorem ipsum dolor sit amet,
+                  consectetur adipiscing elit. Sed imperdiet ipsum non dolor lacinia mattis a id mauris. Proin pellentesque ultrices laoreet.
+                  Nam nec fermentum leo, non commodo urna. Nunc vestibulum, metus nec tincidunt venenatis, nibh tellus tincidunt justo, eget
+                  dolor mi at nisl. Curabitur imperdiet, enim ac lobortis tincidunt, nulla ex imperdiet magna, quis feugiat nibh justo et nisi.
             </div>
         </div>
     </div>

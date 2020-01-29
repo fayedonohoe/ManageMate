@@ -16,7 +16,7 @@
               <table id="table-visits" class="table table-hover">
                 <thead>
                   <th>Patient</th>
-                  <th>Doctor</th>
+                  <th>Manager</th>
                   <th>Date</th>
                   <th>Time</th>
                   <th>Duration</th>
@@ -27,8 +27,8 @@
                   @foreach ($visits as $visit)
                     <tr data-id="{{ $visit->id }}">
                       <!-- THE ABOVE LINE IS BREAKING THE INDEX AND I CANT FIGURE OUT WHY, SAME IN  -->
-                      <td>{{ $visit->patient->user->firstName }} {{ $visit->patient->user->lastName }}</td>
-                      <td>{{ $visit->doctor->user->firstName }} {{ $visit->->doctor->user->lastName }}</td>
+                      <td>{{ $visit->employee->user->firstName }} {{ $visit->employee->user->lastName }}</td>
+                      <td>{{ $visit->manager->user->firstName }} {{ $visit->->manager->user->lastName }}</td>
                       <td>{{ $visit->date }}</td>
                       <td>{{ $visit->time }}</td>
                       <td>{{ $visit->duration }}</td>

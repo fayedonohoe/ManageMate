@@ -1,18 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.mmapp')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+
+    <div class="col justify-content-center">
+        <div class="col-md-12">
+            <div class="">
                 <div class="card-header">Welcome</div>
 
                 <div class="card-body">
 
-                    + Welcome To MedCentral! +
+                    Welcome To ManageMate!
 
                   </br>
-                  <a href="{{ route('about') }}">About MedCentral</a>
+                  <a href="{{ route('about') }}">About ManageMate</a>
                   </br>
                   <a href="{{ route('home') }}">Home</a>
 
@@ -20,5 +20,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

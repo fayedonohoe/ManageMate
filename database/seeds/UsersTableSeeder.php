@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Role;
+use App\Shift;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,48 +15,52 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
       $role_admin = Role::where('name', 'admin')->first();
-      $role_doctor = Role::where('name', 'doctor')->first();
-      $role_patient = Role::where('name', 'patient')->first();
+      $role_manager = Role::where('name', 'manager')->first();
+      $role_employee = Role::where('name', 'employee')->first();
+
+      $shift_wd_open = Shift::where('name', 'weekday_opening')->first();
 
       $admin = new User();
       $admin->firstName = 'Faye';
       $admin->lastName = 'Donohoe';
       $admin->eircode = 'D16R2F5';
       $admin->phoneNumber = '08' . $this->random_str(8, '0123456789');
-      $admin->email = 'admin@medcentral.ie';
+      $admin->email = 'admin@managemate.ie';
       $admin->password = bcrypt('secret');
       $admin->save();
       $admin->roles()->attach($role_admin);
 
-      $doctor = new User();
-      $doctor->firstName = 'John';
-      $doctor->lastName = 'Smith';
-      $doctor->eircode = 'D18K9L5';
-      $doctor->phoneNumber = '08' . $this->random_str(8, '0123456789');
-      $doctor->email = 'johnsmith@medcentral.ie';
-      $doctor->password = bcrypt('tardis');
-      $doctor->save();
-      $doctor->roles()->attach($role_doctor);
+      $manager = new User();
+      $manager->firstName = 'John';
+      $manager->lastName = 'Smith';
+      $manager->eircode = 'D18K9L5';
+      $manager->phoneNumber = '08' . $this->random_str(8, '0123456789');
+      $manager->email = $manager->firstName . $manager->lastName .'@managemate.ie';
+      $manager->password = bcrypt('tardis');
+      $manager->save();
+      $manager->roles()->attach($role_manager);
+      $manager->shifts()->attach($shift_wd_open);
 
-      $patient = new User();
-      $patient->firstName = 'Donna';
-      $patient->lastName = 'Noble';
-      $patient->eircode = 'C90K0JL';
-      $patient->phoneNumber = '08' . $this->random_str(8, '0123456789');
-      $patient->email = 'donnanoble@medcentral.ie';
-      $patient->password = bcrypt('secret');
-      $patient->save();
-      $patient->roles()->attach($role_patient);
+      $employee = new User();
+      $employee->firstName = 'Donna';
+      $employee->lastName = 'Noble';
+      $employee->eircode = 'C90K0JL';
+      $employee->phoneNumber = '08' . $this->random_str(8, '0123456789');
+      $employee->email = $employee->firstName . $employee->lastName .'@managemate.ie';
+      $employee->password = bcrypt('secret');
+      $employee->save();
+      $employee->roles()->attach($role_employee);
+      $employee->shifts()->attach($shift_wd_open);
 
-      $patient = new User();
-      $patient->firstName = 'Rose';
-      $patient->lastName = 'Tyler';
-      $patient->eircode = 'D12LK87';
-      $patient->phoneNumber = '08' . $this->random_str(8, '0123456789');
-      $patient->email = 'rosetyler@medcentral.ie';
-      $patient->password = bcrypt('secret');
-      $patient->save();
-      $patient->roles()->attach($role_patient);
+      $employee = new User();
+      $employee->firstName = 'Rose';
+      $employee->lastName = 'Tyler';
+      $employee->eircode = 'D12LK87';
+      $employee->phoneNumber = '08' . $this->random_str(8, '0123456789');
+      $employee->email = $employee->firstName . $employee->lastName .'@managemate.ie';;
+      $employee->password = bcrypt('secret');
+      $employee->save();
+      $employee->roles()->attach($role_employee);
     }
 
     private function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'){

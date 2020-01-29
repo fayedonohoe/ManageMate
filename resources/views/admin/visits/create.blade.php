@@ -24,20 +24,20 @@
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
               <div class="form-group">
-                <label for="patient">Patient</label>
-                <select name="patient_id">
-                  @foreach ($patients as $patient)
-                    <option value="{{ $patient->id }}" {{ old('patient_id') == $patient->id ? "selected" : "" }} > <!-- If there was a previously entered insurer, display that one first with selected -->
-                      {{$patient->user->firstName}} {{$patient->user->lastName}}
+                <label for="employee">Patient</label>
+                <select name="employee_id">
+                  @foreach ($employees as $employee)
+                    <option value="{{ $employee->id }}" {{ old('employee_id') == $employee->id ? "selected" : "" }} > <!-- If there was a previously entered insurer, display that one first with selected -->
+                      {{$employee->user->firstName}} {{$employee->user->lastName}}
                     </option>
                   @endforeach
                 </select>
 
-                <label for="doctor">Doctor</label>
-                <select name="doctor_id">
-                  @foreach ($doctors as $doctor)
-                    <option value="{{ $doctor->id }}" {{ old('doctor_id') == $doctor->id ? "selected" : "" }} > <!-- If there was a previously entered insurer, display that one first with selected -->
-                      {{$doctor->user->firstName}} {{$doctor->user->lastName}}
+                <label for="manager">Manager</label>
+                <select name="manager_id">
+                  @foreach ($managers as $manager)
+                    <option value="{{ $manager->id }}" {{ old('manager_id') == $manager->id ? "selected" : "" }} > <!-- If there was a previously entered insurer, display that one first with selected -->
+                      {{$manager->user->firstName}} {{$manager->user->lastName}}
                     </option>
                   @endforeach
                 </select>
