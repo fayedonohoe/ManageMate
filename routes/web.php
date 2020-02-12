@@ -48,7 +48,7 @@ Route::put('/manager/employees{id}', 'Manager\EmployeeController@update')->name(
 Route::delete('/manager/employees{id}', 'Manager\EmployeeController@destroy')->name('manager.employees.destroy');
 
 //Route::get('/manager/home', 'Manager\HomeController@index')->name('manager.home');
-Route::get('/manager/roster', 'manager\RosterController@index')->name('manager.roster');
+Route::get('/manager/roster', 'manager\RosterController@index')->name('manager.roster.index');
 
 Route::get('/manager/shifts', 'manager\ShiftController@index')->name('manager.shifts.index');
 Route::get('/manager/shifts/create', 'manager\ShiftController@create')->name('manager.shifts.create');
@@ -57,3 +57,13 @@ Route::post('/manager/shifts/store', 'manager\ShiftController@store')->name('man
 Route::get('/manager/shifts{id}/edit', 'manager\ShiftController@edit')->name('manager.shifts.edit');
 Route::put('/manager/shifts{id}', 'manager\ShiftController@update')->name('manager.shifts.update');
 Route::delete('/manager/shifts{id}', 'manager\ShiftController@destroy')->name('manager.shifts.destroy');
+
+Route::get('/manager/usershifts', 'manager\UserShiftController@index')->name('manager.usershifts.index');
+Route::get('/manager/usershifts/create', 'manager\UserShiftController@create')->name('manager.usershifts.create');
+Route::get('/manager/usershifts/{id}', 'manager\UserShiftController@show')->name('manager.usershifts.show');
+
+Route::get('/usershifts', 'UserShiftController@index')->name('usershifts.index');
+Route::get('/usershifts/create', 'UserShiftController@create')->name('usershifts.create');
+Route::get('/usershifts/{id}', 'UserShiftController@show')->name('usershifts.show');
+Route::get('/usershifts{id}/edit', 'UserShiftController@edit')->name('usershifts.edit');
+Route::delete('/usershifts{id}', 'UserShiftController@destroy')->name('usershifts.destroy');

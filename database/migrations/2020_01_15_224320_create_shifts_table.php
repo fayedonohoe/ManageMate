@@ -20,6 +20,7 @@ class CreateShiftsTable extends Migration
             $table->time('endTime');
             $table->integer('paidHours');
             $table->boolean('isActive');
+            $table->integer('sortOrder');
             $table->timestamps();
         });
     }

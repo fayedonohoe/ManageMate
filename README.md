@@ -1,17 +1,16 @@
-# MedCentral
-Laravel Project For A Medical Centre Online System
+# ManageMate
+Laravel Project For An Online Rostering System
 
-Doctors and Patients dont have access rights to the system admins do.
-Admins can view, update and delete Doctors, Patients and Visits.
+
 
 To log in as an admin:
-email: admin@medcentral.ie
+email: admin@managemate.ie
 pw: secret
 
-To log in as a doctor:
-email: johnsmith@medcentral.ie
+To log in as a manager:
+email: johnsmith@managemate.ie
 pw: tardis
 
-To log in as a patient:
-email: donnanoble@medcentral.ie
+To log in as an employee:
+email: donnanoble@managemate.ie
 pw: secret

@@ -16,6 +16,6 @@ class Employee extends Model
 
 
     public function rostered_shifts(){
-       return $this->belongsToMany('App\Shift')->using('App\RosteredShift');
+       return $this->belongsToMany('App\Shift')->using('App\UserShift');
     }
 }

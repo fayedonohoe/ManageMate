@@ -5,52 +5,52 @@
     <script>
 
     /*Droppable jquery*/
-$(function() {
-    $(".draggable").draggable({
-        cursor: "move",
-        revert: "invalid"
-    });
-    $(".block").droppable({
-        accept: ".draggable",
-        drop: function(event, ui) {
-            console.log("drop");
-            $(this).removeClass("over");
-            var dropped = ui.draggable;
-            var droppedOn = $(this);
-            $(dropped).detach().css({
-
-                //Determines position of dropped item in relation to drop area.
-                top: 0,
-                left: 0,
-                margin: 0
-            }).appendTo(droppedOn);
-        },
-        over: function(event, elem) {
-            $(this).addClass("over");
-            console.log("over");
-        },
-        out: function(event, elem) {
-            $(this).removeClass("over");
-        }
-    });
-    $("#drop").sortable({
-        cursor: "move"
-    });
-    $(".inside").droppable({
-        accept: ".draggable",
-        drop: function(event, ui) {
-            console.log("drop");
-            var dropped = ui.draggable;
-            var droppedOn = $(this);
-            $(dropped).detach().css({
-                //Determines position of dropped item in relation to original area.
-                top: 0,
-                left: 0,
-                margin: 0
-            }).appendTo(droppedOn);
-        }
-    });
-});
+// $(function() {
+//     $(".draggable").draggable({
+//         cursor: "move",
+//         revert: "invalid"
+//     });
+//     $(".block").droppable({
+//         accept: ".draggable",
+//         drop: function(event, ui) {
+//             console.log("drop");
+//             $(this).removeClass("over");
+//             var dropped = ui.draggable;
+//             var droppedOn = $(this);
+//             $(dropped).detach().css({
+//
+//                 //Determines position of dropped item in relation to drop area.
+//                 top: 0,
+//                 left: 0,
+//                 margin: 0
+//             }).appendTo(droppedOn);
+//         },
+//         over: function(event, elem) {
+//             $(this).addClass("over");
+//             console.log("over");
+//         },
+//         out: function(event, elem) {
+//             $(this).removeClass("over");
+//         }
+//     });
+//     $("#drop").sortable({
+//         cursor: "move"
+//     });
+//     $(".inside").droppable({
+//         accept: ".draggable",
+//         drop: function(event, ui) {
+//             console.log("drop");
+//             var dropped = ui.draggable;
+//             var droppedOn = $(this);
+//             $(dropped).detach().css({
+//                 //Determines position of dropped item in relation to original area.
+//                 top: 0,
+//                 left: 0,
+//                 margin: 0
+//             }).appendTo(droppedOn);
+//         }
+//     });
+// });
 </script>
 </head>
 
@@ -103,26 +103,37 @@ $(function() {
 
                         <!--Table data-->
                         <tbody>
+
+                          @foreach ($usershifts as $usershift)
+                            <!-- <tr data-id="{{ $employee->id }}"> -->
+                              <!-- <td>{{ $employee->user->firstName }}</td>
+                              <td>{{ $employee->user->lastName }}</td>
+                              <td>{{ $employee->user->eircode }}</td>
+                              <td>{{ $employee->user->phoneNumber }}</td>
+                              <td>{{ $employee->user->email }}</td>
+                              <td>{{ $employee->contract->name }}</td>
+                              <td> -->
                             <!--first row-->
                             <tr>
-                                <th scope="row">Bernie</th>
-                                <!--Droppable Objects only drop into first table cell-->
-                                <td id="droppable" class="block ui-widget-header ui-droppable">
-                                </td>
+                                <th scope="row" data-id="{{ $employee->id }}"></th>
                                 <td>
-                                    <div id="droppable" class="ui-widget-header">drop here
+                                    <div id="droppable" class="ui-widget-header">
                                     </div>
                                 </td>
                                 <td>
-                                    <div id="droppable" class="ui-widget-header">drop here
+                                    <div id="droppable" class="ui-widget-header">
                                     </div>
                                 </td>
                                 <td>
-                                    <div id="droppable" class="ui-widget-header">drop here
+                                    <div id="droppable" class="ui-widget-header">
                                     </div>
                                 </td>
                                 <td>
-                                    <div id="droppable" class="ui-widget-header">drop here
+                                    <div id="droppable" class="ui-widget-header">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="droppable" class="ui-widget-header">
                                     </div>
                                 </td>
                                 <td>
@@ -134,6 +145,39 @@ $(function() {
                                     </div>
                                 </td>
                             </tr>
+
+
+                                <!--Droppable Objects only drop into first table cell-->
+                                <!-- <td id="droppable" class="block ui-widget-header ui-droppable">
+                                </td>
+                                <td>
+                                    <div id="droppable" class="ui-widget-header">drop here
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="droppable" class="ui-widget-header">drop here
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="droppable" class="ui-widget-header">drop here
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="droppable" class="ui-widget-header">drop here
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="droppable" class="ui-widget-header">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="droppable" class="ui-widget-header">
+                                    </div>
+                                </td>
+                            </tr> -->
+
+
+
                             <!--second row-->
                             <tr>
                                 <th scope="row">Mark</th>
@@ -294,6 +338,8 @@ $(function() {
                                     </div>
                                 </td>
                             </tr>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <!--Table end-->

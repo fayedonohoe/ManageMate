@@ -15,6 +15,8 @@
                   <a href="{{ route('about') }}">About ManageMate</a>
                   </br>
                   <a href="{{ route('home') }}">Home</a>
+                  </br>
+                  
 
                 </div>
             </div>

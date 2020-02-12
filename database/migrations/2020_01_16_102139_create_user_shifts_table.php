@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserShiftTable extends Migration
+class CreateUserShiftsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateUserShiftTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_shift', function (Blueprint $table) {
+        Schema::create('user_shifts', function (Blueprint $table) {
           $table->bigIncrements('id');
           $table->date('date');
           $table->bigInteger('user_id')->unsigned();
           $table->bigInteger('shift_id')->unsigned();
-          $table->boolean('notAvailable');
+          $table->boolean('unavailable');
           $table->string('note');
           $table->timestamps();
 

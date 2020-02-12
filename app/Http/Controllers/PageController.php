@@ -17,4 +17,8 @@ class PageController extends Controller
     public function roster(){
       return view('roster');
     }
+
+    public function usershifts(){
+      return view('usershifts');
+    }
 }

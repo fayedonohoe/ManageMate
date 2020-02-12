@@ -19,6 +19,7 @@ class ShiftsTableSeeder extends Seeder
       $wd_open->endTime = '173000';
       $wd_open->paidHours = 8;
       $wd_open->isActive = true;
+      $wd_open->sortOrder = 1;
       $wd_open->save();
 
       $wd_close = new Shift();
@@ -27,6 +28,7 @@ class ShiftsTableSeeder extends Seeder
       $wd_close->endTime = '213000';
       $wd_close->paidHours = 8;
       $wd_close->isActive = true;
+      $wd_close->sortOrder = 3;
       $wd_close->save();
 
       $wd_midshift = new Shift();
@@ -35,6 +37,7 @@ class ShiftsTableSeeder extends Seeder
       $wd_midshift->endTime = '193000';
       $wd_midshift->paidHours = 8;
       $wd_midshift->isActive = true;
+      $wd_midshift->sortOrder = 2;
       $wd_midshift->save();
 
     }

@@ -45,7 +45,10 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item links">
-                <a class="nav-link" href="roster">Roster</a>
+                <a class="nav-link" href="manager/usershifts">Roster</a>
+            </li>
+            <li class="nav-item links">
+                <a class="nav-link" href="manager/usershifts">Today</a>
             </li>
             <li class="nav-item links">
                 <a class="nav-link" href="employees">Employees</a>
