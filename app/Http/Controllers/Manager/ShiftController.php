@@ -8,6 +8,7 @@ use App\Shift;
 use App\User;
 use App\Role;
 use App\Contract;
+use Carbon\Carbon;
 
 class ShiftController extends Controller
 {

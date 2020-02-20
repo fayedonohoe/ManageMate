@@ -25,9 +25,13 @@ class RosterController extends Controller
   public function index()
   {
       $usershifts = UserShift::all();
+      $users = User::all();
 
       return view('manager.roster.index')->with([
-        'usershifts' => $usershifts
+        'usershifts' => $usershifts,
+        'users' => $users
       ]);
   }
+
+
 }

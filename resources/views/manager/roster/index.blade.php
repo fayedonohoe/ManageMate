@@ -2,66 +2,115 @@
 
 @section('content')
 
-  <div class="">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
+    <div class="">
+      <div class="col">
+        <!-- <div class=""> -->
           <div class="card-header">
-            This Week
-            <!-- <a href=" {{route('usershifts.create') }}" class="btn btn-primary float-right">Add</a> -->
+
+            {{ $today = Carbon\Carbon::now()->toFormattedDateString() }}
+            {{ $weekStartDate = Carbon\Carbon::now()->startOfWeek()->format('d-m-y') }}
+            {{ $weekEndDate = Carbon\Carbon::now()->endOfWeek()->format('d-m-y') }}
+
           </div>
-          <!-- <div class="card-body">
-            @if (count($usershifts) === 0)
-              <p> There Are No Shifts Scheduled Today!</p>
-            @else
+
+
               <table id="table-usershifts" class="table table-hover">
                 <thead>
 
-                  <th>Employee</th>
-                  <th>Start Time</th>
-                  <th>End Time</th>
-                  <th>Note</th>
+                  <th> </th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thursday</th>
+                  <th>Friday</th>
+                  <th>Saturday</th>
+                  <th>Sunday</th>
+
                 </thead>
 
                 <tbody>
-                  @foreach ($usershifts->sortBy('shift.sortOrder') as $usershift)
-                    <tr data-id="{{ $usershift->id }}">
-                      <td>{{ $usershift->user->firstName }} {{ $usershift->user->lastName }}</td>
-                      <td>{{ $usershift->shift->startTime }}</td>
-                      <td>{{ $usershift->shift->endTime }}</td>
-                      <td>{{ $usershift->note }}</td>
-                      <td>
-                        <a href="{{ route('usershifts.show', $usershift->id) }}" class="btn btn-sm btn-light">View</a>
-                        <a href="{{ route('usershifts.edit', $usershift->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form style="display:inline-block" method="POST" action="{{ route('usershifts.destroy', $usershift->id) }}">
-                          <input type="hidden" name="_method" value="DELETE">
-                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <button type="submit" class="form-control btn-sm btn-danger">Delete</a>
-                        </form>
-                      </td>
+
+                  <tr>
+                    <td> </td>
+                    <td>{{ $mon = $weekStartDate }}</td>
+                    <td>{{ ($tue = Carbon\Carbon::now()->startOfWeek()->addDays(1))->format('d-m-y') }} </td>
+                    <td>{{ ($wed = Carbon\Carbon::now()->startOfWeek()->addDays(2))->format('d-m-y') }} </td>
+                    <td>{{ $thur = Carbon\Carbon::now()->startOfWeek()->addDays(3)->format('d-m-y') }} </td>
+                    <td>{{ $fri = Carbon\Carbon::now()->startOfWeek()->addDays(4)->format('d-m-y') }} </td>
+                    <td>{{ $sat = Carbon\Carbon::now()->startOfWeek()->addDays(5)->format('d-m-y') }} </td>
+                    <td>{{ $sun = $weekEndDate }} </td>
+                  </tr>
+
+                  @foreach ($users as $user)
+                    <tr data-id="{{ $user->id }}">
+                      <td>{{ $user->firstName }}</td>
+                      @foreach ($usershifts as $usershift)
+
+                        @if ($usershift->user_id == $user->id)
+                          @if ($usershift->date == $mon))
+                            <td>SUCCESS</td>
+                          @else
+                              <td></td>
+                          @endif
+
+
+                            @if ($usershift->date == $tue->format('Y-m-d'))
+                              <td>
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
+                                -
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
+                              </td>
+                            @else
+                                <td></td>
+                            @endif
+
+                          @if ($usershift->date == $wed->format('Y-m-d'))
+                          <td>
+                            {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
+                            -
+                            {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
+                          </td>
+                          @else
+                              <td></td>
+                          @endif
+
+                          @if ($usershift->date == $thur)
+                            <td>SUCCESS</td>
+                          @else
+                              <td> </td>
+                          @endif
+
+                          @if ($usershift->date == $fri)
+                            <td>SUCCESS</td>
+                          @else
+                              <td> </td>
+                          @endif
+
+                          @if ($usershift->date == $sat)
+                            <td>SUCCESS</td>
+                          @else
+                              <td> </td>
+                          @endif
+
+                          @if ($usershift->date == $sun)
+                            <td>SUCCESS</td>
+                          @else
+                              <td> </td>
+                          @endif
+
+                        @endif
+
+                      @endforeach
                     </tr>
+                    @endforeach
 
-                  @endforeach
-                </tbody>
-              </table>
-            @endif
-            <a href="{{ route('home') }}" class="btn btn-light">Back</a>
-          </div> -->
-            <div class="card-body">
+                  </tbody>
+                </table>
 
-              {{ $dt = Carbon::now() }}
 
-              @for ($i = 0; $i < 6; $i++)
-                  <div>
-                    {{ date("$i") }}
-                    <? $dt = Carbon::now(); ?>
-                    {{ $dt->format('l') }}
-                  </div>
-              @endfor
-            </div>
 
-        </div>
-      </div>
-    </div>
+
+            </div> <!-- end body -->
+
   </div>
 @endsection

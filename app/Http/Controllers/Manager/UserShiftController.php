@@ -8,6 +8,7 @@ use App\User;
 use App\Employee;
 use App\Shift;
 use App\UserShift;
+use Carbon\Carbon;
 
 class UserShiftController extends Controller
 {
