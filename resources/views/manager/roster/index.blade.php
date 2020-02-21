@@ -8,8 +8,8 @@
           <div class="card-header">
 
             {{ $today = Carbon\Carbon::now()->toFormattedDateString() }}
-            {{ $weekStartDate = Carbon\Carbon::now()->startOfWeek()->format('d-m-y') }}
-            {{ $weekEndDate = Carbon\Carbon::now()->endOfWeek()->format('d-m-y') }}
+            {{ ($weekStartDate = Carbon\Carbon::now()->startOfWeek())->format('d-m-y') }}
+            {{ ($weekEndDate = Carbon\Carbon::now()->endOfWeek())->format('d-m-y') }}
 
           </div>
 
@@ -32,13 +32,13 @@
 
                   <tr>
                     <td> </td>
-                    <td>{{ $mon = $weekStartDate }}</td>
+                    <td>{{ ($mon = $weekStartDate)->format('d-m-y') }}</td>
                     <td>{{ ($tue = Carbon\Carbon::now()->startOfWeek()->addDays(1))->format('d-m-y') }} </td>
                     <td>{{ ($wed = Carbon\Carbon::now()->startOfWeek()->addDays(2))->format('d-m-y') }} </td>
                     <td>{{ $thur = Carbon\Carbon::now()->startOfWeek()->addDays(3)->format('d-m-y') }} </td>
                     <td>{{ $fri = Carbon\Carbon::now()->startOfWeek()->addDays(4)->format('d-m-y') }} </td>
                     <td>{{ $sat = Carbon\Carbon::now()->startOfWeek()->addDays(5)->format('d-m-y') }} </td>
-                    <td>{{ $sun = $weekEndDate }} </td>
+                    <td>{{ ($sun = $weekEndDate)->format('d-m-y') }} </td>
                   </tr>
 
                   @foreach ($users as $user)
@@ -46,12 +46,14 @@
                       <td>{{ $user->firstName }}</td>
                       @foreach ($usershifts as $usershift)
 
+
                         @if ($usershift->user_id == $user->id)
-                          @if ($usershift->date == $mon))
-                            <td>SUCCESS</td>
-                          @else
-                              <td></td>
-                          @endif
+                          @if ( Carbon\Carbon::parse($usershift->date)->between($weekStartDate, $weekEndDate)){
+                            @if ($usershift->date == $mon->format('Y-m-d')))
+                              <td>SUCCESS</td>
+                            @else
+                                <td></td>
+                            @endif
 
 
                             @if ($usershift->date == $tue->format('Y-m-d'))
@@ -64,49 +66,51 @@
                                 <td></td>
                             @endif
 
-                          @if ($usershift->date == $wed->format('Y-m-d'))
-                          <td>
-                            {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
-                            -
-                            {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
-                          </td>
-                          @else
-                              <td></td>
-                          @endif
+                            @if ($usershift->date == $wed->format('Y-m-d'))
+                            <td>
+                              {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
+                              -
+                              {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
+                            </td>
+                            @else
+                                <td></td>
+                            @endif
 
-                          @if ($usershift->date == $thur)
-                            <td>SUCCESS</td>
-                          @else
-                              <td> </td>
-                          @endif
+                            @if ($usershift->date == $thur)
+                              <td>SUCCESS</td>
+                            @else
+                                <td> </td>
+                            @endif
 
-                          @if ($usershift->date == $fri)
-                            <td>SUCCESS</td>
-                          @else
-                              <td> </td>
-                          @endif
+                            @if ($usershift->date == $fri)
+                              <td>SUCCESS</td>
+                            @else
+                                <td> </td>
+                            @endif
 
-                          @if ($usershift->date == $sat)
-                            <td>SUCCESS</td>
-                          @else
-                              <td> </td>
-                          @endif
+                            @if ($usershift->date == $sat)
+                              <td>SUCCESS</td>
+                            @else
+                                <td> </td>
+                            @endif
 
-                          @if ($usershift->date == $sun)
-                            <td>SUCCESS</td>
-                          @else
-                              <td> </td>
-                          @endif
+                            @if ($usershift->date == $sun->format('Y-m-d'))
+                              <td>SUCCESS</td>
+                            @else
+                                <td> </td>
+                            @endif
+                      }
 
-                        @endif
+                            @endif
+                            @endif
 
                       @endforeach
+
                     </tr>
                     @endforeach
 
                   </tbody>
                 </table>
-
 
 
 
