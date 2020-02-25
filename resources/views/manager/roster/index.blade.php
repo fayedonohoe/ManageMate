@@ -7,8 +7,11 @@
         <!-- <div class=""> -->
           <div class="card-header">
 
+            Todays Date: 
             {{ $today = Carbon\Carbon::now()->toFormattedDateString() }}
+            <br/>
             {{ ($weekStartDate = Carbon\Carbon::now()->startOfWeek())->format('d-m-y') }}
+              --->
             {{ ($weekEndDate = Carbon\Carbon::now()->endOfWeek())->format('d-m-y') }}
 
           </div>
@@ -17,9 +20,6 @@
           <!-- Nested Loop of divs instead of a table?
                This would allow me to fill by col not row ( by day not user) -->
 
-
-
-              @foreach ($users as $user)
               <table id="table-usershifts" class="table table-hover">
                 <thead>
 
@@ -41,9 +41,9 @@
                     <td>{{ ($mon = $weekStartDate)->format('d-m-y') }}</td>
                     <td>{{ ($tue = Carbon\Carbon::now()->startOfWeek()->addDays(1))->format('d-m-y') }} </td>
                     <td>{{ ($wed = Carbon\Carbon::now()->startOfWeek()->addDays(2))->format('d-m-y') }} </td>
-                    <td>{{ $thur = Carbon\Carbon::now()->startOfWeek()->addDays(3)->format('d-m-y') }} </td>
-                    <td>{{ $fri = Carbon\Carbon::now()->startOfWeek()->addDays(4)->format('d-m-y') }} </td>
-                    <td>{{ $sat = Carbon\Carbon::now()->startOfWeek()->addDays(5)->format('d-m-y') }} </td>
+                    <td>{{ ($thur = Carbon\Carbon::now()->startOfWeek()->addDays(3))->format('d-m-y') }} </td>
+                    <td>{{ ($fri = Carbon\Carbon::now()->startOfWeek()->addDays(4))->format('d-m-y') }} </td>
+                    <td>{{ ($sat = Carbon\Carbon::now()->startOfWeek()->addDays(5))->format('d-m-y') }} </td>
                     <td>{{ ($sun = $weekEndDate)->format('d-m-y') }} </td>
                   </tr>
 
@@ -59,7 +59,7 @@
 
 
                         @if ($usershift->user_id == $user->id)
-                          @if ( Carbon\Carbon::parse($usershift->date)->between($weekStartDate, $weekEndDate))
+                          @if ( Carbon\Carbon::parse($usershift->date)->between($weekStartDate, $weekEndDate)){
                             @if ($usershift->date == $mon->format('Y-m-d'))
                               <td>
                                 {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
@@ -91,30 +91,46 @@
                                 <td></td>
                             @endif
 
-                            @if ($usershift->date == $thur)
-                              <td>SUCCESS</td>
+                            @if ($usershift->date == $thur->format('Y-m-d'))
+                              <td>
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
+                                -
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
+                              </td>
                             @else
                                 <td> </td>
                             @endif
 
-                            @if ($usershift->date == $fri)
-                              <td>SUCCESS</td>
+                            @if ($usershift->date == $fri->format('Y-m-d'))
+                              <td>
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
+                                -
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
+                              </td>
                             @else
                                 <td> </td>
                             @endif
 
-                            @if ($usershift->date == $sat)
-                              <td>SUCCESS</td>
+                            @if ($usershift->date == $sat->format('Y-m-d'))
+                              <td>
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
+                                -
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
+                              </td>
                             @else
                                 <td> </td>
                             @endif
 
                             @if ($usershift->date == $sun->format('Y-m-d'))
-                              <td>SUCCESS</td>
+                              <td>
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
+                                -
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
+                              </td>
                             @else
                                 <td> </td>
                             @endif
-
+                          }
 
                         @endif
                       @endif
@@ -126,6 +142,7 @@
 
                   </tbody>
                 </table>
+
             </div> <!-- end col -->
 
   </div>

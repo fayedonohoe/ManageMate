@@ -1,4 +1,9 @@
 <?php
+# @Date:   2020-02-25T11:18:32+00:00
+# @Last modified time: 2020-02-25T12:02:21+00:00
+
+
+
 
 use Illuminate\Database\Seeder;
 use App\User;
@@ -15,7 +20,15 @@ class UserShiftsTableSeeder extends Seeder
     public function run()
     {
         $usershift = new UserShift();
-        $usershift->date = "2019-12-14";
+        $usershift->date = "2020-02-24";
+        $usershift->user_id = 1;
+        $usershift->shift_id = 1;
+        $usershift->unavailable = false;
+        $usershift->note = "";
+        $usershift->save();
+
+        $usershift = new UserShift();
+        $usershift->date = "2020-02-25";
         $usershift->user_id = 2;
         $usershift->shift_id = 1;
         $usershift->unavailable = false;
@@ -23,7 +36,15 @@ class UserShiftsTableSeeder extends Seeder
         $usershift->save();
 
         $usershift = new UserShift();
-        $usershift->date = "2019-12-10";
+        $usershift->date = "2020-02-28";
+        $usershift->user_id = 2;
+        $usershift->shift_id = 3;
+        $usershift->unavailable = false;
+        $usershift->note = "";
+        $usershift->save();
+
+        $usershift = new UserShift();
+        $usershift->date = "2020-02-27";
         $usershift->user_id = 2;
         $usershift->shift_id = 2;
         $usershift->unavailable = false;
@@ -31,7 +52,7 @@ class UserShiftsTableSeeder extends Seeder
         $usershift->save();
 
         $usershift = new UserShift();
-        $usershift->date = "2019-12-19";
+        $usershift->date = "2020-02-26";
         $usershift->user_id = 3;
         $usershift->shift_id = 3;
         $usershift->unavailable = false;
@@ -39,9 +60,17 @@ class UserShiftsTableSeeder extends Seeder
         $usershift->save();
 
         $usershift = new UserShift();
-        $usershift->date = "2019-12-06";
+        $usershift->date = "2020-02-26";
         $usershift->user_id = 4;
-        $usershift->shift_id = 3;
+        $usershift->shift_id = 2;
+        $usershift->unavailable = false;
+        $usershift->note = "";
+        $usershift->save();
+
+        $usershift = new UserShift();
+        $usershift->date = "2020-03-01";
+        $usershift->user_id = 4;
+        $usershift->shift_id = 1;
         $usershift->unavailable = false;
         $usershift->note = "";
         $usershift->save();
