@@ -14,6 +14,12 @@
           </div>
 
 
+          <!-- Nested Loop of divs instead of a table?
+               This would allow me to fill by col not row ( by day not user) -->
+
+
+
+              @foreach ($users as $user)
               <table id="table-usershifts" class="table table-hover">
                 <thead>
 
@@ -42,15 +48,24 @@
                   </tr>
 
                   @foreach ($users as $user)
+                  <!-- for each user, make a collection of their shifts
+                          loop though (foreach)usershifts per this user id, if belongs to this monday, add, if tuesday, add, etc etc
+                          7 if statements - if this monday
+                          -->
+
                     <tr data-id="{{ $user->id }}">
                       <td>{{ $user->firstName }}</td>
                       @foreach ($usershifts as $usershift)
 
 
                         @if ($usershift->user_id == $user->id)
-                          @if ( Carbon\Carbon::parse($usershift->date)->between($weekStartDate, $weekEndDate)){
-                            @if ($usershift->date == $mon->format('Y-m-d')))
-                              <td>SUCCESS</td>
+                          @if ( Carbon\Carbon::parse($usershift->date)->between($weekStartDate, $weekEndDate))
+                            @if ($usershift->date == $mon->format('Y-m-d'))
+                              <td>
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
+                                -
+                                {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
+                              </td>
                             @else
                                 <td></td>
                             @endif
@@ -99,10 +114,10 @@
                             @else
                                 <td> </td>
                             @endif
-                      }
 
-                            @endif
-                            @endif
+
+                        @endif
+                      @endif
 
                       @endforeach
 
@@ -111,10 +126,7 @@
 
                   </tbody>
                 </table>
-
-
-
-            </div> <!-- end body -->
+            </div> <!-- end col -->
 
   </div>
 @endsection

@@ -24,18 +24,24 @@ class RosterController extends Controller
   // }
   public function index()
   {
-      $usershifts = UserShift::all();
+      $usershifts = UserShift::all()->sortBy('date');
       $users = User::all();
-
+      //$myshifts = UserShift::all()->where('user_id');
 
       return view('manager.roster.index')->with([
         'usershifts' => $usershifts,
         'users' => $users
+        //'myshifts' => $myshifts
       ]);
   }
 
-
-  
+  // public function getUsersWeek($id){
+  //     $myshifts = UserShift::all()->groupBy($id);
+  //
+  //     return view('manager.roster.index')>with([
+  //       'myshifts' => $myshifts,
+  //     ]);
+  // }
 
 
 }
