@@ -1,4 +1,4 @@
-@extends('layouts.mmapp')
+@extends('layouts.emapp')
 
 @section('content')
 <div class="container">
@@ -14,9 +14,26 @@
                         </div>
                     @endif
 
-                    You are logged in as an employee!
 
                     Hi {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}
+                    <br/>
+                    You are logged in as an employee!
+                    <br/>
+
+                    
+                    <div class="" aria-labelledby="">
+                        <a class="" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+
+
 
                 </div>
             </div>

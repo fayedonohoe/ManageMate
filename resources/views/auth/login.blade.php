@@ -1,4 +1,4 @@
-@extends('layouts.mmapp')
+@extends('layouts.guestapp')
 
 @section('content')
 <div class="container">

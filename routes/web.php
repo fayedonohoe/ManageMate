@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-02-25T11:18:32+00:00
-# @Last modified time: 2020-02-26T19:25:04+00:00
+# @Last modified time: 2020-02-27T17:57:36+00:00
 
 
 
@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home');
 Route::get('/manager/home', 'Manager\HomeController@index')->name('manager.home');
-Route::get('/employee/home', 'Employee\HomeController@index')->name('employee.home');
+Route::get('/employee/today', 'Employee\HomeController@index')->name('employee.today');
 
 Route::get('/admin/managers', 'Admin\ManagerController@index')->name('admin.managers.index');
 Route::get('/admin/managers/create', 'Admin\ManagerController@create')->name('admin.managers.create');
@@ -67,17 +67,9 @@ Route::delete('/manager/shifts{id}', 'manager\ShiftController@destroy')->name('m
 Route::get('/manager/usershifts', 'manager\UserShiftController@index')->name('manager.usershifts.index');
 Route::get('/manager/usershifts/create', 'manager\UserShiftController@create')->name('manager.usershifts.create');
 Route::get('/manager/usershifts/{id}', 'manager\UserShiftController@show')->name('manager.usershifts.show');
-
+Route::get('/manager/usershifts{id}/edit', 'manager\UserShiftController@edit')->name('manager.usershifts.edit');
+Route::delete('/manager/usershifts{id}', 'manager\UserShiftController@destroy')->name('manager.usershifts.destroy');
 
 
 Route::get('/employee/usershifts', 'employee\UserShiftController@index')->name('employee.usershifts.index');
 Route::get('/employee/usershifts/{id}', 'employee\UserShiftController@show')->name('employee.usershifts.show');
-
-
-
-
-Route::get('/usershifts', 'UserShiftController@index')->name('usershifts.index');
-Route::get('/usershifts/create', 'UserShiftController@create')->name('usershifts.create');
-Route::get('/usershifts/{id}', 'UserShiftController@show')->name('usershifts.show');
-Route::get('/usershifts{id}/edit', 'UserShiftController@edit')->name('usershifts.edit');
-Route::delete('/usershifts{id}', 'UserShiftController@destroy')->name('usershifts.destroy');

@@ -1,4 +1,9 @@
 <?php
+# @Date:   2020-02-25T11:18:32+00:00
+# @Last modified time: 2020-02-27T18:59:17+00:00
+
+
+
 
 namespace App\Http\Controllers\Manager;
 
@@ -17,11 +22,7 @@ class ShiftController extends Controller
       $this->middleware('auth');
       $this->middleware('role:manager');
   }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $shifts = Shift::all();
@@ -32,12 +33,7 @@ class ShiftController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         // $request->validate([
@@ -63,12 +59,8 @@ class ShiftController extends Controller
         return redirect()->route('manager.shifts.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function show($id)
     {
         $shift = Shift::findOrFail($id);
@@ -78,12 +70,7 @@ class ShiftController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
       $contracts = Contract::all();
@@ -95,13 +82,7 @@ class ShiftController extends Controller
       ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
       $shift = Shift::findOrFail($id);
@@ -131,12 +112,7 @@ class ShiftController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
       $shift = Shift::findOrFail($id);

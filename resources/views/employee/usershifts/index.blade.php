@@ -1,13 +1,53 @@
-@extends('layouts.app')
+@extends('layouts.emapp')
 
 @section('content')
-  <div class="container">
+<div class="container">
+  <br/>
+
+  <div class="row justify-content-center">
+      <div class="col-md-12">
+          <div class="">
+              <h3> {{ Carbon\Carbon::now()->format('l, F jS') }} </h3>
+
+              <div class="">
+                  @if (session('status'))
+                      <div class="alert alert-success" role="alert">
+                          {{ session('status') }}
+                      </div>
+                  @endif
+
+
+                  <h3>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }} </h3>
+                  <br/>
+                  You are logged in as an employee!
+                  <br/>
+
+
+                  <div class="" aria-labelledby="">
+                      <a class="" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          {{ __('Logout') }}
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <br/>
+
+
+
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="card">
           <div class="card-header">
-            Todays Shifts
-            <a href=" {{route('usershifts.create') }}" class="btn btn-primary float-right">Add</a>
+            Your Shift Today
+
           </div>
           <div class="card-body">
             @if (count($usershifts) === 0)
@@ -16,29 +56,20 @@
               <table id="table-usershifts" class="table table-hover">
                 <thead>
 
-                  <th>First Name</th>
-                  <th>Last Name</th>
                   <th>Start Time</th>
                   <th>End Time</th>
                   <th>Note</th>
                 </thead>
 
                 <tbody>
-                  @foreach ($usershifts as $usershift)
+                  @foreach ($myday->sortBy('shift.sortOrder') as $usershift)
                     <tr data-id="{{ $usershift->id }}">
-                      <td>{{ $usershift->user->firstName }}</td>
-                      <td>{{ $usershift->user->lastName }}</td>
-                      <td>{{ $usershift->shift->startTime }}</td>
-                      <td>{{ $usershift->shift->endTime }}</td>
+                      <td>{{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}</td>
+                      <td>{{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}</td>
                       <td>{{ $usershift->note }}</td>
                       <td>
-                        <a href="{{ route('usershifts.show', $usershift->id) }}" class="btn btn-light">View</a>
-                        <a href="{{ route('usershifts.edit', $usershift->id) }}" class="btn btn-warning">Edit</a>
-                        <form style="display:inline-block" method="POST" action="{{ route('usershifts.destroy', $usershift->id) }}">
-                          <input type="hidden" name="_method" value="DELETE">
-                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <button type="submit" class="form-control btn btn-danger">Delete</a>
-                        </form>
+                        {{-- <a href="{{ route('usershifts.show', $usershift->id) }}" class="btn btn-light">View</a> --}}
+
                       </td>
                     </tr>
 
@@ -46,16 +77,15 @@
                 </tbody>
               </table>
             @endif
-            <a href="{{ route('home') }}" class="btn btn-light">Back</a>
           </div>
         </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-7">
         <div class="card">
           <div class="card-header">
-            Todays Shifts
-            <a href=" {{route('usershifts.create') }}" class="btn btn-primary float-right">Add</a>
+            Your Upcoming Shifts
+
           </div>
           <div class="card-body">
             @if (count($usershifts) === 0)
@@ -64,29 +94,22 @@
               <table id="table-usershifts" class="table table-hover">
                 <thead>
 
-                  <th>First Name</th>
-                  <th>Last Name</th>
+                  <th>Date</th>
                   <th>Start Time</th>
                   <th>End Time</th>
                   <th>Note</th>
                 </thead>
 
                 <tbody>
-                  @foreach ($usershifts as $usershift)
+                  @foreach ($myshifts->sortBy('date') as $usershift)
                     <tr data-id="{{ $usershift->id }}">
-                      <td>{{ $usershift->user->firstName }}</td>
-                      <td>{{ $usershift->user->lastName }}</td>
-                      <td>{{ $usershift->shift->startTime }}</td>
-                      <td>{{ $usershift->shift->endTime }}</td>
+                      <td>{{ ($myDate = new Carbon\Carbon($usershift->date))->format('D j M') }}</td>
+                      <td>{{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}</td>
+                      <td>{{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}</td>
                       <td>{{ $usershift->note }}</td>
                       <td>
-                        <a href="{{ route('usershifts.show', $usershift->id) }}" class="btn btn-light">View</a>
-                        <a href="{{ route('usershifts.edit', $usershift->id) }}" class="btn btn-warning">Edit</a>
-                        <form style="display:inline-block" method="POST" action="{{ route('usershifts.destroy', $usershift->id) }}">
-                          <input type="hidden" name="_method" value="DELETE">
-                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <button type="submit" class="form-control btn btn-danger">Delete</a>
-                        </form>
+                        {{-- <a href="{{ route('usershifts.show', $usershift->id) }}" class="btn btn-light">View</a> --}}
+
                       </td>
                     </tr>
 
@@ -94,13 +117,70 @@
                 </tbody>
               </table>
             @endif
-            <a href="{{ route('home') }}" class="btn btn-light">Back</a>
           </div>
         </div>
       </div>
-
-
 
     </div>
+
+    <br/>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              Todays Shifts
+
+            </div>
+            <div class="card-body">
+              @if (count($usershifts) === 0)
+                <p> You Have No Shifts Scheduled Today!</p>
+              @else
+                <table id="table-usershifts" class="table table-hover">
+                  <thead>
+
+                    <th>Employee</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                  </thead>
+
+                  <tbody>
+                    @foreach ($usershifts->sortBy('shift.sortOrder') as $usershift)
+                      <tr data-id="{{ $usershift->id }}">
+                        <td>{{ $usershift->user->firstName }} {{ $usershift->user->lastName }}</td>
+                        <td>{{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}</td>
+                        <td>{{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}</td>
+                        <td>
+                          {{-- <a href="{{ route('usershifts.show', $usershift->id) }}" class="btn btn-light">View</a> --}}
+
+                        </td>
+                      </tr>
+
+                    @endforeach
+                  </tbody>
+                </table>
+              @endif
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <br/>
+
+      <div class="row">
+        <div class="col-md-12">
+          <a href="{{ route('home') }}" class="btn btn-dark">Back</a>
+        </div>
+      </div>
+
+      <br/>
+
   </div>
+
+
+
+
 @endsection

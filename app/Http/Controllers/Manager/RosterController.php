@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-02-25T11:18:32+00:00
-# @Last modified time: 2020-02-26T16:34:10+00:00
+# @Last modified time: 2020-02-27T19:17:57+00:00
 
 
 
@@ -56,7 +56,7 @@ class RosterController extends Controller
       ]);
   }
 
-  
+
 
   // public function getUsersWeek($id){
   //     $myshifts = UserShift::all()->groupBy($id);

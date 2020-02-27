@@ -1,4 +1,9 @@
 <?php
+# @Date:   2020-02-25T11:18:32+00:00
+# @Last modified time: 2020-02-27T17:57:07+00:00
+
+
+
 
 namespace App\Http\Controllers\Employee;
 
@@ -18,6 +23,6 @@ class HomeController extends Controller
   public function index(){
 
     $user = Auth::user();     //retrieves currently authenticated user
-    return view('employee.home');
+    return view('employee.today');
   }
 }

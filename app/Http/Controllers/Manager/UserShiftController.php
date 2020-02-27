@@ -1,9 +1,6 @@
 <?php
 # @Date:   2020-02-25T11:18:32+00:00
-# @Last modified time: 2020-02-26T16:36:02+00:00
-
-
-
+# @Last modified time: 2020-02-27T13:25:16+00:00
 
 namespace App\Http\Controllers\Manager;
 
@@ -37,7 +34,7 @@ class UserShiftController extends Controller
         // $roles = User::find(1)->roles->toArray();
 
 
-        return view('usershifts.index')->with([
+        return view('manager.usershifts.index')->with([
           'usershifts' => $usershifts
         ]);
     }
@@ -54,7 +51,7 @@ class UserShiftController extends Controller
         // $roles = User::find(1)->roles->toArray();
 
 
-        return view('usershifts.index')->with([
+        return view('manager.usershifts.index')->with([
           'usershifts' => $usershifts
         ]);
     }
@@ -64,7 +61,7 @@ class UserShiftController extends Controller
       $users = User::all();
       $shifts = Shift::all();
 
-      return view('usershifts.create')->with([
+      return view('manager.usershifts.create')->with([
         'users' => $users,
         'shifts' => $shifts
       ]);
