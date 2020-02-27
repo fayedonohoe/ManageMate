@@ -4,24 +4,27 @@
 
     <div class="">
       <div class="col">
-        <!-- <div class=""> -->
-          <div class="card-header">
-
-            Todays Date: 
-            {{ $today = Carbon\Carbon::now()->toFormattedDateString() }}
-            <br/>
-            {{ ($weekStartDate = Carbon\Carbon::now()->startOfWeek())->format('d-m-y') }}
-              --->
-            {{ ($weekEndDate = Carbon\Carbon::now()->endOfWeek())->format('d-m-y') }}
-
-          </div>
-
 
           <!-- Nested Loop of divs instead of a table?
                This would allow me to fill by col not row ( by day not user) -->
 
               <table id="table-usershifts" class="table table-hover">
-                <thead>
+
+                <thead class="trGray">
+                  <tr>
+                    <th colspan="8">
+                      Todays Date:
+                      {{ $today = Carbon\Carbon::now()->toFormattedDateString() }}
+                      <br/>
+                      {{ ($weekStartDate = Carbon\Carbon::now()->startOfWeek())->format('d-m-y') }}
+                        --->
+                      {{ ($weekEndDate = Carbon\Carbon::now()->endOfWeek())->format('d-m-y') }}
+                    </th>
+                  </tr>
+                </thead>
+
+
+                <thead class="trRed">
 
                   <th> </th>
                   <th>Monday</th>
@@ -36,7 +39,8 @@
 
                 <tbody>
 
-                  <tr>
+                  <thead class="trGray">
+
                     <td> </td>
                     <td>{{ ($mon = $weekStartDate)->format('d-m-y') }}</td>
                     <td>{{ ($tue = Carbon\Carbon::now()->startOfWeek()->addDays(1))->format('d-m-y') }} </td>
@@ -45,7 +49,9 @@
                     <td>{{ ($fri = Carbon\Carbon::now()->startOfWeek()->addDays(4))->format('d-m-y') }} </td>
                     <td>{{ ($sat = Carbon\Carbon::now()->startOfWeek()->addDays(5))->format('d-m-y') }} </td>
                     <td>{{ ($sun = $weekEndDate)->format('d-m-y') }} </td>
-                  </tr>
+
+                  </thead>
+
 
                   @foreach ($users as $user)
                   <!-- for each user, make a collection of their shifts
@@ -59,24 +65,32 @@
 
 
                         @if ($usershift->user_id == $user->id)
-                          @if ( Carbon\Carbon::parse($usershift->date)->between($weekStartDate, $weekEndDate)){
+                          @if ( Carbon\Carbon::parse($usershift->date)->between($weekStartDate, $weekEndDate))
+
+                            {{ $usershift }}
+                            <br/>
+
                             @if ($usershift->date == $mon->format('Y-m-d'))
                               <td>
                                 {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
                                 -
                                 {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
+
                               </td>
-                            @else
-                                <td></td>
+                                @continue
+
                             @endif
 
 
                             @if ($usershift->date == $tue->format('Y-m-d'))
+                              <td></td>
                               <td>
                                 {{ ($myTime = new Carbon\Carbon($usershift->shift->startTime))->format('H:i') }}
                                 -
                                 {{ ($myTime = new Carbon\Carbon($usershift->shift->endTime))->format('H:i') }}
+
                               </td>
+                              @continue
                             @else
                                 <td></td>
                             @endif
@@ -130,7 +144,7 @@
                             @else
                                 <td> </td>
                             @endif
-                          }
+
 
                         @endif
                       @endif

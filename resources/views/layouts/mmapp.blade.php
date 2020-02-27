@@ -42,13 +42,13 @@
     <div class="row">
         <ul class="nav flex-column">
             <li class="nav-item links">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/home">Home</a>
             </li>
             <li class="nav-item links">
                 <a class="nav-link" href="roster">Roster</a>
             </li>
             <li class="nav-item links">
-                <a class="nav-link" href="manager/usershifts">Today</a>
+                <a class="nav-link" href="usershifts">Today</a>
             </li>
             <li class="nav-item links">
                 <a class="nav-link" href="employees">Employees</a>

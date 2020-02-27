@@ -1,4 +1,9 @@
 <?php
+# @Date:   2020-02-25T11:18:32+00:00
+# @Last modified time: 2020-02-26T19:25:04+00:00
+
+
+
 use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +44,8 @@ Route::get('/admin/employees{id}/edit', 'Admin\EmployeeController@edit')->name('
 Route::put('/admin/employees{id}', 'Admin\EmployeeController@update')->name('admin.employees.update');
 Route::delete('/admin/employees{id}', 'Admin\EmployeeController@destroy')->name('admin.employees.destroy');
 
+
+
 Route::get('/manager/employees', 'Manager\EmployeeController@index')->name('manager.employees.index');
 Route::get('/manager/employees/create', 'Manager\EmployeeController@create')->name('manager.employees.create');
 Route::get('/manager/employees/{id}', 'Manager\EmployeeController@show')->name('manager.employees.show');
@@ -47,7 +54,6 @@ Route::get('/manager/employees{id}/edit', 'Manager\EmployeeController@edit')->na
 Route::put('/manager/employees{id}', 'Manager\EmployeeController@update')->name('manager.employees.update');
 Route::delete('/manager/employees{id}', 'Manager\EmployeeController@destroy')->name('manager.employees.destroy');
 
-//Route::get('/manager/home', 'Manager\HomeController@index')->name('manager.home');
 Route::get('/manager/roster', 'manager\RosterController@index')->name('manager.roster.index');
 
 Route::get('/manager/shifts', 'manager\ShiftController@index')->name('manager.shifts.index');
@@ -61,6 +67,14 @@ Route::delete('/manager/shifts{id}', 'manager\ShiftController@destroy')->name('m
 Route::get('/manager/usershifts', 'manager\UserShiftController@index')->name('manager.usershifts.index');
 Route::get('/manager/usershifts/create', 'manager\UserShiftController@create')->name('manager.usershifts.create');
 Route::get('/manager/usershifts/{id}', 'manager\UserShiftController@show')->name('manager.usershifts.show');
+
+
+
+Route::get('/employee/usershifts', 'employee\UserShiftController@index')->name('employee.usershifts.index');
+Route::get('/employee/usershifts/{id}', 'employee\UserShiftController@show')->name('employee.usershifts.show');
+
+
+
 
 Route::get('/usershifts', 'UserShiftController@index')->name('usershifts.index');
 Route::get('/usershifts/create', 'UserShiftController@create')->name('usershifts.create');

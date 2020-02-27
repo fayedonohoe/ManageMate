@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.mmapp')
 
 @section('content')
-  <div class="container">
+
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             Employee: {{ $employee->firstName }} {{ $employee->lastName }}
@@ -37,11 +37,11 @@
                   <hr>
 
                   <tr>
-                    <td>Insurance Company</td>
-                    <td>{{ $employee->contract->name }}</td>
+                    <td>Contracted Hours</td>
+                    <td>{{ $employee->contract->hoursPerWeek }}</td>
                   </tr>
                   <tr>
-                    <td>Policy Number</td>
+                    <td>Employee Number</td>
                     <td>{{ $employee->policyNum }}</td>
                   </tr>
 
@@ -49,17 +49,19 @@
                 </tbody>
               </table>
 
+              <br/>
+
               <a href="{{ route('manager.employees.index') }}" class="btn btn-light">Back</a>
               <a href="{{ route('manager.employees.edit', $employee->id) }}" class="btn btn-warning">Edit</a>
               <form style="display:inline-block" method="POST" action="{{ route('manager.employees.destroy', $employee->id) }}">
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <button type="submit" class="form-control btn btn-danger">Delete</a>
+                <button type="submit" class="form-control btn btn-sm btn-danger">Delete</a>
               </form>
 
           </div>
         </div>
       </div>
     </div>
-  </div>
+
 @endsection

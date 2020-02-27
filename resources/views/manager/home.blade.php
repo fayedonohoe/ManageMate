@@ -14,10 +14,28 @@
                         </div>
                     @endif
 
+
+
+
+                        <div class="" aria-labelledby="">
+                            <a class="" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+
+
+
+
                     You are logged in as a manager!
 
                     <div class="card-body">
-                      @if (count($errors) === 0) 
+                      @if (count($errors) === 0)
                         <p> There Are No Shifts!</p>
                       @else
                         <table id="table-shifts" class="table table-hover">

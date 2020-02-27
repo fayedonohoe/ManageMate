@@ -1,15 +1,16 @@
 <?php
 # @Date:   2020-02-25T11:18:32+00:00
-# @Last modified time: 2020-02-26T16:36:02+00:00
+# @Last modified time: 2020-02-26T20:06:05+00:00
 
 
 
 
-namespace App\Http\Controllers\Manager;
+namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 use App\User;
 use App\Employee;
 use App\Shift;
@@ -21,8 +22,8 @@ class UserShiftController extends Controller
     public function __construct()
     {
       //remove middleware for now
-        // $this->middleware('auth');
-        // $this->middleware('role:manager');
+        $this->middleware('auth');
+        $this->middleware('role:employee');
     }
 
     public function indexFull()
@@ -45,55 +46,21 @@ class UserShiftController extends Controller
     public function index()
     {
         $today = Carbon::now()->format('Y-m-d');
-        $usershifts = UserShift::all()->where( 'date',$today );
-        //dd( $usershifts );
-        //$usershifts = UserShift::orderBy( 'user_shifts.date', 'asc')->get();  // WORKS
-        //$usershifts = UserShift::orderBy( 'shift.sortOrder', 'asc')->get();
+        $id = Auth::user()->id;
+        $usershifts = UserShift::all()->where( 'date', $today)->where('user_id', $id );  //WORKS
+        $myshifts = UserShift::all()->where( 'date', $today );  // WORKS
+        //dd( $id );
+
 
         // collections can be converted to an array
         // $roles = User::find(1)->roles->toArray();
 
 
         return view('usershifts.index')->with([
-          'usershifts' => $usershifts
+          'usershifts' => $usershifts,
+          'myshifts' => $myshifts
         ]);
     }
-
-    public function create()
-    {
-      $users = User::all();
-      $shifts = Shift::all();
-
-      return view('usershifts.create')->with([
-        'users' => $users,
-        'shifts' => $shifts
-      ]);
-    }
-
-    public function store(Request $request)
-    {
-      //date, time, duration, cost, user, shift
-        // $request->validate([
-        //   'fname' => 'required|max:191',
-        //   'lname' => 'required|max:191',
-        //   'eircode' => 'required|alpha_num|size:7',
-        //   'num' => 'required|size:10',
-        //   'email' => 'required|max:191',
-        //   'password' => 'required|max:191',
-        //   //'policyNum' => 'nullable|size:10',
-        // ]);
-
-        $usershift = new UserShift();
-        $usershift->date = $request->input('date');
-        $usershift->user_id = $request->input('user_id');
-        $usershift->shift_id = $request->input('shift_id');
-        $usershift->unavailable = $request->input('false');
-        $usershift->note = $request->input('note');
-
-        $usershift->save();
-
-        return redirect()->route('usershifts.index');
-}
 
 
     public function show($id)
@@ -134,16 +101,6 @@ class UserShiftController extends Controller
         //
         // $usershift->update();
     }
-
-    public function destroy($id)
-    {
-      $usershift = UserShift::findOrFail($id);
-
-      $usershift->delete();
-
-      return redirect()->route('usershifts.index');
-    }
-
 
 
 

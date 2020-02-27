@@ -1,4 +1,9 @@
 <?php
+# @Date:   2020-02-25T11:18:32+00:00
+# @Last modified time: 2020-02-25T16:51:19+00:00
+
+
+
 
 use Illuminate\Database\Seeder;
 use App\Contract;
@@ -13,19 +18,23 @@ class ContractsTableSeeder extends Seeder
     public function run()
     {
         $contract = new Contract();
-        $contract->name = 'Irish Life';
-        $contract->companyRegistrationNumber = 'IL19275049';
+        $contract->title = 'Sales Assistant - Part Time - 8h';
+        $contract->hoursPerWeek = '8';
+        $contract->code = 'sa_pt_8';
         $contract->save();
 
         $contract = new Contract();
-        $contract->name = 'Laya Healthcare';
-        $contract->companyRegistrationNumber = 'LH86630187';
+        $contract->title = 'Sales Assistant - Full Time - 32h';
+        $contract->hoursPerWeek = '32';
+        $contract->code = 'sa_ft_32';
         $contract->save();
 
         $contract = new Contract();
-        $contract->name = 'Allianz Health';
-        $contract->companyRegistrationNumber = 'AH10038799';
+        $contract->title = 'Manager - Full Time - 40h';
+        $contract->hoursPerWeek = '40';
+        $contract->code = 'ma_ft_40';
         $contract->save();
+
 
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.mmapp')
 
 @section('content')
 <div class="container">
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in as a employee!
+                    You are logged in as an employee!
 
                     Hi {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}
 

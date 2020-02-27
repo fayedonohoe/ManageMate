@@ -1,4 +1,9 @@
 <?php
+# @Date:   2020-02-25T11:18:32+00:00
+# @Last modified time: 2020-02-25T19:22:48+00:00
+
+
+
 
 namespace App\Http\Controllers\Manager;
 
@@ -17,11 +22,7 @@ class EmployeeController extends Controller
       $this->middleware('auth');
       $this->middleware('role:manager');
   }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $employees = Employee::all();
@@ -31,11 +32,7 @@ class EmployeeController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $contracts = Contract::all();
@@ -45,12 +42,7 @@ class EmployeeController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -72,6 +64,7 @@ class EmployeeController extends Controller
         $user->password = bcrypt($request->input('password') );
 
         $user->save();
+        $user->roles()->attach(Role::where('name', 'employee')->first());
 
         $employee = new Employee();
         $employee->user_id = $user->id;
@@ -82,12 +75,7 @@ class EmployeeController extends Controller
         return redirect()->route('manager.employees.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $employee = Employee::findOrFail($id);
@@ -97,12 +85,7 @@ class EmployeeController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
       $contracts = Contract::all();
@@ -114,13 +97,7 @@ class EmployeeController extends Controller
       ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
       $employee = Employee::findOrFail($id);
@@ -134,7 +111,7 @@ class EmployeeController extends Controller
         'password' => 'required|max:191',
       ]);
 
-      $employee = new User();
+      $employee = new Employee();
       $employee->firstName = $request->input('fname');
       $employee->lastName = $request->input('lname');
       $employee->eircode = $request->input('eircode');
@@ -142,25 +119,21 @@ class EmployeeController extends Controller
       $employee->email = $request->input('email');
       $employee->password = $request->input('password');
 
-      $employee->update();
+      $employee->user->update();
 
-      // CHANGE THE ABOVE TO $USER AND BELOW THE UPDATE, UPDATE PATIENTS TABLE
+      // CHANGE THE ABOVE TO $USER AND BELOW THE UPDATE, UPDATE EMPLOYEES TABLE
 
       return redirect()->route('manager.employees.index');
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
       $employee = Employee::findOrFail($id);
+      //$user = User::findOrFail($employee->user_id); // Constraint violation
 
       $employee->delete();
+      //$user->delete();
 
       return redirect()->route('manager.employees.index');
     }

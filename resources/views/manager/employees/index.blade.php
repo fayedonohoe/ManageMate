@@ -20,7 +20,7 @@
                   <th>Eircode</th>
                   <th>Phone Number</th>
                   <th>Email Address</th>
-                  <th>Insurance Company</th>
+                  <th>Contract Type</th>
                 </thead>
 
                 <tbody>
@@ -31,14 +31,14 @@
                       <td>{{ $employee->user->eircode }}</td>
                       <td>{{ $employee->user->phoneNumber }}</td>
                       <td>{{ $employee->user->email }}</td>
-                      <td>{{ $employee->contract->name }}</td>
+                      <td>{{ $employee->contract->title }}</td>
                       <td>
                         <a href="{{ route('manager.employees.show', $employee->id) }}" class="btn btn-light">View</a>
                         <a href="{{ route('manager.employees.edit', $employee->id) }}" class="btn btn-warning">Edit</a>
                         <form style="display:inline-block" method="POST" action="{{ route('manager.employees.destroy', $employee->id) }}">
                           <input type="hidden" name="_method" value="DELETE">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <button type="submit" class="form-control btn btn-danger">Delete</a>
+                          <button type="submit" class="form-control btn btn-sm btn-danger">Delete</a>
                         </form>
                       </td>
                     </tr>
