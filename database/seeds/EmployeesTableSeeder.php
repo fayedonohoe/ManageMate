@@ -1,4 +1,9 @@
 <?php
+# @Date:   2020-02-25T11:18:32+00:00
+# @Last modified time: 2020-03-06T10:09:35+00:00
+
+
+
 
 use Illuminate\Database\Seeder;
 use App\Employee;
@@ -19,7 +24,7 @@ class EmployeesTableSeeder extends Seeder
 
       foreach ($role_user->users as $user){
         $employee = new Employee();
-        $employee->user_id = 3;
+        $employee->user_id = $user->id;
         $employee->contract_id =1;
         $employee->policyNum = "2018102938"; //RANDOMIZE THIS LATER
         $employee->save();

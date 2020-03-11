@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-02-25T11:18:32+00:00
-# @Last modified time: 2020-02-27T19:17:57+00:00
+# @Last modified time: 2020-02-28T09:42:42+00:00
 
 
 
@@ -26,7 +26,7 @@ class RosterController extends Controller
 
   public function index()
   {
-      $data = [];
+      $dataset = [];
 
       $usershifts = UserShift::all()->sortBy('date');
       //$usershifts = UserShift::all()->sortBy('user_id');
@@ -42,7 +42,7 @@ class RosterController extends Controller
           "shifts" => $usershifts
         ];
 
-        array_push($data, $user);
+        array_push($dataset, $user);
       }
 
       //dd($data);
@@ -51,7 +51,7 @@ class RosterController extends Controller
       return view('manager.roster.index')->with([
         'usershifts' => $usershifts,
         'users' => $users,
-        'moShifts' => $data
+        'dataset' => $dataset
         //'myshifts' => $myshifts
       ]);
   }

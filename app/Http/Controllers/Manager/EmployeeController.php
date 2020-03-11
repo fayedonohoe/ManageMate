@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-02-25T11:18:32+00:00
-# @Last modified time: 2020-02-25T19:22:48+00:00
+# @Last modified time: 2020-03-06T11:45:15+00:00
 
 
 
@@ -107,7 +107,7 @@ class EmployeeController extends Controller
         'lname' => 'required|max:191',
         'eircode' => 'required|alpha_num|size:7',
         'num' => 'required|size:10',
-        'email' => 'required|max:191|unique:users,email,'.$employee->id,
+        //'email' => 'required|max:191|unique:users,email,'.$employee->id,
         'password' => 'required|max:191',
       ]);
 

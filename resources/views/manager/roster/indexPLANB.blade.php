@@ -62,24 +62,14 @@
                     <td>{{ $user['name']}}</td>
 
 
-                    @php
-
-                    $moShifts = $user['shifts']
-
-                    @endphp
-
-
-
                     @for($i=1; $i <= 7; $i++)
 
-                      @foreach ($moShifts as $shift)
+                      @foreach ($user['shifts'] as $shift)
                         @php
 
                         $day = new Carbon\Carbon($shift->date)
 
                         @endphp
-
-                        {{-- {{ "index: " .$i. ", day: " .$day->format('N')}} --}}
 
                         @if($day->format('N') == $i)
                           <td>
@@ -87,14 +77,6 @@
                             -
                             {{ ($myTime = new Carbon\Carbon($shift->shift->endTime))->format('H:i') }}
                           </td>
-
-                          @php
-
-                          unset($moShifts[0]);
-
-                          @endphp
-
-  @break
                           @else
                             <td>
                               none

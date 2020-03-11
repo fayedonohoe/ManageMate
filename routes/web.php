@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-02-25T11:18:32+00:00
-# @Last modified time: 2020-02-27T17:57:36+00:00
+# @Last modified time: 2020-03-06T11:19:28+00:00
 
 
 
@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home');
 Route::get('/manager/home', 'Manager\HomeController@index')->name('manager.home');
-Route::get('/employee/today', 'Employee\HomeController@index')->name('employee.today');
+Route::get('/employee/home', 'Employee\HomeController@index')->name('employee.home');
 
 Route::get('/admin/managers', 'Admin\ManagerController@index')->name('admin.managers.index');
 Route::get('/admin/managers/create', 'Admin\ManagerController@create')->name('admin.managers.create');

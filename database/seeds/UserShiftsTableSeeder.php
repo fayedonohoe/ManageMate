@@ -1,6 +1,6 @@
 <?php
 # @Date:   2020-02-25T11:18:32+00:00
-# @Last modified time: 2020-02-25T12:02:21+00:00
+# @Last modified time: 2020-03-06T09:58:48+00:00
 
 
 
@@ -44,7 +44,7 @@ class UserShiftsTableSeeder extends Seeder
         $usershift->save();
 
         $usershift = new UserShift();
-        $usershift->date = "2020-02-27";
+        $usershift->date = "2020-03-02";
         $usershift->user_id = 2;
         $usershift->shift_id = 2;
         $usershift->unavailable = false;
@@ -52,7 +52,7 @@ class UserShiftsTableSeeder extends Seeder
         $usershift->save();
 
         $usershift = new UserShift();
-        $usershift->date = "2020-02-26";
+        $usershift->date = "2020-03-05";
         $usershift->user_id = 3;
         $usershift->shift_id = 3;
         $usershift->unavailable = false;
@@ -60,7 +60,7 @@ class UserShiftsTableSeeder extends Seeder
         $usershift->save();
 
         $usershift = new UserShift();
-        $usershift->date = "2020-02-26";
+        $usershift->date = "2020-03-05";
         $usershift->user_id = 4;
         $usershift->shift_id = 2;
         $usershift->unavailable = false;

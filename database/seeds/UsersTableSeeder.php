@@ -1,4 +1,9 @@
 <?php
+# @Date:   2020-02-25T11:18:32+00:00
+# @Last modified time: 2020-03-06T09:57:30+00:00
+
+
+
 
 use Illuminate\Database\Seeder;
 use App\User;
@@ -41,6 +46,17 @@ class UsersTableSeeder extends Seeder
       $manager->roles()->attach($role_manager);
       $manager->shifts()->attach($shift_wd_open);
 
+      $manager = new User();
+      $manager->firstName = 'Aisling';
+      $manager->lastName = 'Denning';
+      $manager->eircode = 'L05MK88';
+      $manager->phoneNumber = '08' . $this->random_str(8, '0123456789');
+      $manager->email = $manager->firstName . $manager->lastName .'@managemate.ie';
+      $manager->password = bcrypt('secret');
+      $manager->save();
+      $manager->roles()->attach($role_manager);
+      $manager->shifts()->attach($shift_wd_open);
+
       $employee = new User();
       $employee->firstName = 'Donna';
       $employee->lastName = 'Noble';
@@ -56,6 +72,16 @@ class UsersTableSeeder extends Seeder
       $employee->firstName = 'Rose';
       $employee->lastName = 'Tyler';
       $employee->eircode = 'D12LK87';
+      $employee->phoneNumber = '08' . $this->random_str(8, '0123456789');
+      $employee->email = $employee->firstName . $employee->lastName .'@managemate.ie';;
+      $employee->password = bcrypt('secret');
+      $employee->save();
+      $employee->roles()->attach($role_employee);
+
+      $employee = new User();
+      $employee->firstName = 'Jonathan';
+      $employee->lastName = 'Masey';
+      $employee->eircode = 'D0361PP';
       $employee->phoneNumber = '08' . $this->random_str(8, '0123456789');
       $employee->email = $employee->firstName . $employee->lastName .'@managemate.ie';;
       $employee->password = bcrypt('secret');
